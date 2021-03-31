@@ -37,4 +37,10 @@ RewriteEngine On
 RewriteCond %{HTTP:X-SSL} !^yes$
 RewriteRule (.*) https://site.ru/$1 [R=301,L]
 
+-------------------------------------
 
+# Редирект для Битрикс с index.php на корневую папку, например site.ru/news/index.php в site.ru/news/
+RewriteCond %{REQUEST_URI} !^www.site\.ru/bitrix/admin/
+RewriteCond %{REQUEST_URI} !^site\.ru/bitrix/admin/
+RewriteCond %{REQUEST_URI} ^(.*)/index\.php$
+RewriteRule ^(.*)index\.php$ http://%{HTTP_HOST}/$1 [R=301,L]
