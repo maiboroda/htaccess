@@ -1,0 +1,19 @@
+# Задать кодировку
+AddDefaultCharset utf-8
+
+# Редиректы
+RewriteEngine On
+RewriteBase /
+Options +FollowSymLinks
+
+# Удаляем повторяющиеся слеши
+RewriteCond %{THE_REQUEST} ([^\s]*)\/{2,}(\?[^\s]*)?
+RewriteRule (.*) / [R=301,L]
+
+# Редирект с www на без
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule ^(.*)$ http://%1/$1 [L,R=301] 
+
+# Редирект с index.php на корень
+RewriteCond %{REQUEST_URI} /index.php
+RewriteRule ^(.*)$ http://site.ru? [R=301,L]
