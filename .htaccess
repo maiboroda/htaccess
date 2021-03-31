@@ -32,3 +32,9 @@ RewriteBase /
 RewriteCond %{HTTP:X-HTTPS} !1
 RewriteCond %{HTTP_HOST} ^site\.ru$
 RewriteRule ^(.*)$ https://site.ru/$1 [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTP:X-SSL} !^yes$
+RewriteRule (.*) https://site.ru/$1 [R=301,L]
+
+
